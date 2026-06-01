@@ -12,7 +12,7 @@ VARIANTS_ROOT = ROOT.parent / "variants"
 GROUPS = {
     "ablation_improvements": {
         "title_zh": "第一组：单独部分向量、单独网络感知计时器与协同设计的消融对比",
-        "variants": ["baseline-full-fixed", "no-timer", "no-partial", "hybrid-v2", "score-coord"],
+        "variants": ["baseline-full-fixed", "no-timer", "no-partial", "score-coord"],
     },
     "partial_strategy_compare": {
         "title_zh": "第二组：固定计时器下的部分状态向量策略对比（含基线）",
@@ -33,10 +33,19 @@ def parse_result_json(stdout_text):
     return json.loads(stdout_text[start:end + 1])
 
 
+def total_rate_to_fast_ms(total_rate_hz, active_producers):
+    if total_rate_hz <= 0 or active_producers <= 0:
+        return 60000
+
+    per_node_rate_hz = float(total_rate_hz) / float(active_producers)
+    return max(50, int(round(1000.0 / per_node_rate_hz)))
+
+
 def run_variant(variant, args):
     variant_dir = VARIANTS_ROOT / variant
     results = []
-    for fast_count in args.fast_producers:
+    for total_rate_hz in args.active_total_rates:
+        fast_ms = total_rate_to_fast_ms(total_rate_hz, args.active_producers)
         cmd = [
             "python3",
             str(ROOT / "run_compare.py"),
@@ -45,8 +54,8 @@ def run_variant(variant, args):
             "--cols", str(args.cols),
             "--duration-s", str(args.duration_s),
             "--slow-ms", str(args.slow_ms),
-            "--fast-ms", str(args.fast_ms),
-            "--fast-producers", str(fast_count),
+            "--fast-ms", str(fast_ms),
+            "--fast-producers", str(args.active_producers),
             "--distribution", args.distribution,
             "--topology", args.topology,
             "--seed", str(args.seed),
@@ -60,18 +69,26 @@ def run_variant(variant, args):
             proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
             if proc.returncode == 0:
                 item = parse_result_json(proc.stdout)
-                item["x_axis_mode"] = "fast_producers"
+                item.update({
+                    "active_producers_fixed": args.active_producers,
+                    "active_producers": args.active_producers,
+                    "requested_total_rate_hz": total_rate_hz,
+                    "active_total_rate_hz": total_rate_hz,
+                    "active_per_node_rate_hz": 0.0 if args.active_producers == 0 else float(total_rate_hz) / float(args.active_producers),
+                    "x_axis_mode": "fixed_active_rate",
+                    "fast_ms": fast_ms,
+                })
                 results.append(item)
                 break
 
             last_error = proc.stdout
-            print(f"Attempt {attempt} failed for {variant} with fast_producers={fast_count}", flush=True)
+            print(f"Attempt {attempt} failed for {variant} with active_total_rate_hz={total_rate_hz}", flush=True)
             print(proc.stdout, flush=True)
             if attempt < args.retries_per_point:
                 time.sleep(args.retry_backoff_sec)
         else:
             raise RuntimeError(
-                f"Experiment failed for {variant} with fast_producers={fast_count}\n{last_error}"
+                f"Experiment failed for {variant} with active_total_rate_hz={total_rate_hz}\n{last_error}"
             )
     return results
 
@@ -86,22 +103,23 @@ def load_existing_records(path):
 def merge_records(records):
     merged = {}
     for item in records:
-        key = (item.get("group"), item.get("variant"), item.get("fast_producers", 0))
+        x_value = item.get("active_total_rate_hz", item.get("fast_producers", 0))
+        key = (item.get("group"), item.get("variant"), x_value)
         merged[key] = item
     return list(merged.values())
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run the original fast-producer-count SVS comparison suite")
-    parser.add_argument("--output-dir", default=str(ROOT.parent / "results" / "paper-zh-fast-producer-score"))
+    parser = argparse.ArgumentParser(description="Run the full fixed-active-rate SVS comparison suite")
+    parser.add_argument("--output-dir", default=str(ROOT.parent / "results" / "paper-zh-fixed-active-rate-score"))
     parser.add_argument("--base-manifest", help="optional manifest to merge with newly collected records")
     parser.add_argument("--variants", nargs="*", default=["score-fixed", "score-coord"], help="variants to run")
     parser.add_argument("--rows", type=int, default=8)
     parser.add_argument("--cols", type=int, default=8)
     parser.add_argument("--duration-s", type=int, default=10)
     parser.add_argument("--slow-ms", type=int, default=1000)
-    parser.add_argument("--fast-ms", type=int, default=100)
-    parser.add_argument("--fast-producers", nargs="*", type=int, default=[0, 4, 8, 12, 16, 24, 32, 38])
+    parser.add_argument("--active-producers", type=int, default=8)
+    parser.add_argument("--active-total-rates", nargs="*", type=int, default=[0, 5, 10, 15, 20, 25, 30, 35, 40])
     parser.add_argument("--distribution", choices=["uniform", "zipf"], default="zipf")
     parser.add_argument("--topology", choices=["grid", "clustered", "hierarchical", "campus"], default="clustered")
     parser.add_argument("--seed", type=int, default=7)
@@ -146,13 +164,13 @@ def main():
                     all_records.append(enriched)
 
             (output_dir / f"{group_name}.json").write_text(
-                json.dumps(sorted(group_records, key=lambda x: (x.get("variant", ""), x.get("fast_producers", 0))),
+                json.dumps(sorted(group_records, key=lambda x: (x.get("variant", ""), x.get("active_total_rate_hz", 0))),
                            indent=2, sort_keys=True, ensure_ascii=False) + "\n"
             )
 
         all_records = merge_records(all_records)
         manifest_path.write_text(json.dumps(sorted(all_records,
-                                                   key=lambda x: (x.get("group", ""), x.get("variant", ""), x.get("fast_producers", 0))),
+                                                   key=lambda x: (x.get("group", ""), x.get("variant", ""), x.get("active_total_rate_hz", 0))),
                                                 indent=2, sort_keys=True, ensure_ascii=False) + "\n")
 
     plot_cmd = [

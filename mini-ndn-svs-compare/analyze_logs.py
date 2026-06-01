@@ -8,7 +8,7 @@ from pathlib import Path
 
 PUB_RE = re.compile(r"PUB node=(?P<node>\S+) seq=(?P<seq>\d+) ts=(?P<ts>\d+)")
 LEARN_RE = re.compile(r"LEARN listener=(?P<listener>\S+) producer=(?P<producer>\S+) seq=(?P<seq>\d+) ts=(?P<ts>\d+)")
-TX_RE = re.compile(r"SVS_TX_METRIC ts=(?P<ts>\d+) node=(?P<node>\S+) strategy=(?P<strategy>\S+) timer=(?P<timer>\S+) entries=(?P<entries>\d+) bytes=(?P<bytes>\d+)")
+TX_RE = re.compile(r"SVS_TX_METRIC ts=(?P<ts>\d+) node=(?P<node>\S+) strategy=(?P<strategy>\S+) timer=(?P<timer>\S+).*?entries=(?P<entries>\d+) bytes=(?P<bytes>\d+)")
 NODE_RE = re.compile(r"NODE_START node=(?P<node>\S+)")
 
 

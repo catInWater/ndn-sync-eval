@@ -1,0 +1,48 @@
+Using topology file /home/alice/ndn-sync-eval/results/random/20260422-143339/grid-8x8.conf
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+n0_0 n0_1 n0_2 n0_3 n0_4 n0_5 n0_6 n0_7 n1_0 n1_1 n1_2 n1_3 n1_4 n1_5 n1_6 n1_7 n2_0 n2_1 n2_2 n2_3 n2_4 n2_5 n2_6 n2_7 n3_0 n3_1 n3_2 n3_3 n3_4 n3_5 n3_6 n3_7 n4_0 n4_1 n4_2 n4_3 n4_4 n4_5 n4_6 n4_7 n5_0 n5_1 n5_2 n5_3 n5_4 n5_5 n5_6 n5_7 n6_0 n6_1 n6_2 n6_3 n6_4 n6_5 n6_6 n6_7 n7_0 n7_1 n7_2 n7_3 n7_4 n7_5 n7_6 n7_7 
+*** Adding switches:
+
+*** Adding links:
+(10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_0, n0_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_0, n1_0) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_1, n0_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_1, n1_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_2, n0_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_2, n1_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_3, n0_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_3, n1_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_4, n0_5) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_4, n1_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_5, n0_6) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_5, n1_5) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_6, n0_7) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_6, n1_6) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n0_7, n1_7) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_0, n1_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_0, n2_0) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_1, n1_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_1, n2_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_2, n1_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_2, n2_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_3, n1_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_3, n2_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_4, n1_5) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_4, n2_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_5, n1_6) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_5, n2_5) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_6, n1_7) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_6, n2_6) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n1_7, n2_7) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_0, n2_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_0, n3_0) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_1, n2_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_1, n3_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_2, n2_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_2, n3_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_3, n2_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_3, n3_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_4, n2_5) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_4, n3_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_5, n2_6) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_5, n3_5) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_6, n2_7) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_6, n3_6) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n2_7, n3_7) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_0, n3_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_0, n4_0) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_1, n3_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_1, n4_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_2, n3_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_2, n4_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_3, n3_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_3, n4_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_4, n3_5) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_4, n4_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_5, n3_6) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_5, n4_5) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_6, n3_7) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_6, n4_6) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n3_7, n4_7) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n4_0, n4_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n4_0, n5_0) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n4_1, n4_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n4_1, n5_1) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n4_2, n4_3) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n4_2, n5_2) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n4_3, n4_4) (10ms delay 50.00000% loss) (10ms delay 50.00000% loss) (n4_3, n5_3) (10ms delay 50.00000% loss) Traceback (most recent call last):
+  File "/home/alice/ndn-sync-eval/mini-ndn-svs-compare/run_compare.py", line 473, in <module>
+    main()
+  File "/home/alice/ndn-sync-eval/mini-ndn-svs-compare/run_compare.py", line 469, in main
+    run_experiment(args)
+  File "/home/alice/ndn-sync-eval/mini-ndn-svs-compare/run_compare.py", line 366, in run_experiment
+    ndn = Minindn(topoFile=str(topo_path), controller=OVSController, workDir=str(work_dir))
+  File "/home/alice/mini-ndn/minindn/minindn.py", line 97, in __init__
+    self.net = Mininet(topo=self.topo, link=link, **mininetParams)
+  File "/usr/local/lib/python3.10/dist-packages/mininet/net.py", line 178, in __init__
+    self.build()
+  File "/usr/local/lib/python3.10/dist-packages/mininet/net.py", line 508, in build
+    self.buildFromTopo( self.topo )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/net.py", line 495, in buildFromTopo
+    self.addLink( **params )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/net.py", line 406, in addLink
+    link = cls( node1, node2, **options )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/link.py", line 567, in __init__
+    Link.__init__( self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/mininet/link.py", line 467, in __init__
+    intf1 = cls1( name=intfName1, node=node1,
+  File "/usr/local/lib/python3.10/dist-packages/mininet/link.py", line 66, in __init__
+    self.config( **params )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/link.py", line 396, in config
+    tcoutputs = [ self.tc(cmd) for cmd in cmds ]
+  File "/usr/local/lib/python3.10/dist-packages/mininet/link.py", line 396, in <listcomp>
+    tcoutputs = [ self.tc(cmd) for cmd in cmds ]
+  File "/usr/local/lib/python3.10/dist-packages/mininet/link.py", line 317, in tc
+    return self.cmd( c )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/link.py", line 70, in cmd
+    return self.node.cmd( *args, **kwargs )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/node.py", line 387, in cmd
+    return self.waitOutput( verbose )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/node.py", line 374, in waitOutput
+    data = self.monitor( findPid=findPid )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/node.py", line 341, in monitor
+    data = self.read( 1024 )
+  File "/usr/local/lib/python3.10/dist-packages/mininet/node.py", line 249, in read
+    data = os.read( self.stdout.fileno(), size - count )
+KeyboardInterrupt
